@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+enum BookType {
+  TECHNICAL
+  NOVEL
+  MAGAZINE
+  OTHER
+}
+
+model Book {
+  id          Int       @id @default(autoincrement())
+  title       String   
+  authors     String[]
+  publisher   String
+  type        BookType //enum化 
+  pageCount   Int
+  summary     String
+  publishedAt DateTime
+  isbn        String?  
+  imageUrl    String? 
+  reviews     Review[]  // 追加
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  // embedding   Unsupported("vector")?  // pgvector用の埋め込みベクトル
+
+  @@index([title]) // タイトルでの検索を最適化
+  @@index([title, type]) // 書籍検索で頻繁に使用される複合インデックス
+  @@index([publishedAt]) // 出版日での並び替えに使用
+}
+
+model Review {
+  id        Int       @id @default(autoincrement())
+  content   String
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  bookId    Int
+  book      Book      @relation(fields: [bookId], references: [id])
+  Likes Likes[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId, bookId]) // ユーザーごとの書籍レビュー検索を最適化
+}
+
+model Likes {
+  id        Int       @id @default(autoincrement())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  reviewId    Int
+  review      Review      @relation(fields: [reviewId], references: [id])
+  isLiked   Boolean
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([userId, reviewId]) // 1ユーザー1レビューに1いいねの制約
+}
+
+model User {
+  id            String    @id
+  email         String?   @unique // nullableに変更
+  authProvider  String?   // 認証プロバイダー情報を追加（google, github等）
+  laprasUrl     String?   // 任意項目に
+  imageUrl      String?   // 任意項目に
+  displayName   String    // 表示名を追加
+  reviews       Review[]
+  likes         Likes[]
+  bio           String?   // 任意項目に
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
