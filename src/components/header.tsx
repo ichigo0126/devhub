@@ -33,7 +33,7 @@ export function Header() {
   return (
     <header className="border-b">
       <div className="flex h-16 items-center px-4 container mx-auto">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/home" className="flex items-center gap-2">
           <span className="text-xl font-semibold">devhub</span>
         </Link>
 
@@ -55,7 +55,7 @@ export function Header() {
                 <Heart className="mr-2 h-4 w-4" />
                 いいね
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/mypage")}>
                 <Settings className="mr-2 h-4 w-4" />
                 設定
               </DropdownMenuItem>
