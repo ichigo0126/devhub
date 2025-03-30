@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,6 +17,25 @@ import { Input } from "./ui/input";
 export function Header() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [userIcon, setUserIcon] = useState("");
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (user) {
+          setUserIcon(user.user_metadata.avatar_url);
+          console.log(user.user_metadata.avatar_url);
+          console.log("Complete user object:", user);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUserInfo();
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -30,6 +49,8 @@ export function Header() {
       setIsLoading(false);
     }
   };
+
+  console.log(userIcon);
 
   return (
     <header className="border-b">
@@ -46,10 +67,21 @@ export function Header() {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-muted">
-                  山田太郎
-                </div>
+              <Button
+                variant="ghost"
+                className="relative h-8 w-8 p-0 overflow-hidden rounded-full"
+              >
+                {userIcon ? (
+                  <img
+                    src={userIcon}
+                    alt="User"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span className="flex items-center justify-center h-full w-full">
+                    読み込み中...
+                  </span>
+                )}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">

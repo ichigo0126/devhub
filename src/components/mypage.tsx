@@ -10,9 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "./ui/separator";
 import { Header } from "./header";
 
-// Review Item Component
-
-// TODO: 型を定義
 const ReviewItem = ({ name, date, description, avatar }: any) => (
   <Card className="mb-4 w-full">
     <CardHeader className="p-4">
