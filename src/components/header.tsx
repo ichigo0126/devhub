@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Heart, Settings, LogOut } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { Input } from "./ui/input";
 
 export function Header() {
   const router = useRouter();
@@ -36,6 +37,7 @@ export function Header() {
         <Link href="/home" className="flex items-center gap-2">
           <span className="text-xl font-semibold">devhub</span>
         </Link>
+        <Input placeholder="本を検索" className="mx-10"></Input>
 
         <div className="ml-auto flex items-center gap-4">
           <Button variant="ghost" size="sm">

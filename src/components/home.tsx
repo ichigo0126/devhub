@@ -29,60 +29,62 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="max-w-[1200px] mx-auto p-4 bg-white font-sans">
-        <section className="mb-8">
-          <h2 className="text-xl font-bold mb-4">レビューが多い順</h2>
-          <div className="grid grid-cols-5 gap-4">
-            {mostReviewed.map((book, index) => (
-              <div
-                key={index}
-                className="relative bg-white rounded shadow-sm border border-gray-200 p-2"
+      <div className="bg-gray-100">
+        <div className="max-w-[1200px] mx-auto p-4 font-sans">
+          <section className="mb-8">
+            <h2 className="text-xl font-bold mb-4">レビューが多い順</h2>
+            <div className="grid grid-cols-5 gap-4">
+              {mostReviewed.map((book, index) => (
+                <div
+                  key={index}
+                  className="relative bg-white rounded shadow-sm border border-gray-200 p-2"
+                >
+                  <div className="relative aspect-square mb-2 bg-gray-100"></div>
+                  <h3 className="font-medium text-sm line-clamp-2 mb-1">
+                    {book.title}
+                  </h3>
+                  <p className="text-xs text-gray-600">{book.author}</p>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center mt-4">
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-gray-600 border-gray-300"
               >
-                <div className="relative aspect-square mb-2 bg-gray-100"></div>
-                <h3 className="font-medium text-sm line-clamp-2 mb-1">
-                  {book.title}
-                </h3>
-                <p className="text-xs text-gray-600">{book.author}</p>
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center mt-4">
-            <Button
-              variant="outline"
-              size="sm"
-              className="text-gray-600 border-gray-300"
-            >
-              もっと見る
-            </Button>
-          </div>
-        </section>
+                もっと見る
+              </Button>
+            </div>
+          </section>
 
-        <section>
-          <h2 className="text-xl font-bold mb-4">本の発売日が新しい順</h2>
-          <div className="grid grid-cols-5 gap-4">
-            {latestReleases.map((book, index) => (
-              <div
-                key={index}
-                className="relative bg-white rounded shadow-sm border border-gray-200 p-2"
+          <section>
+            <h2 className="text-xl font-bold mb-4">本の発売日が新しい順</h2>
+            <div className="grid grid-cols-5 gap-4">
+              {latestReleases.map((book, index) => (
+                <div
+                  key={index}
+                  className="relative bg-white rounded shadow-sm border border-gray-200 p-2"
+                >
+                  <div className="relative aspect-square mb-2 bg-gray-100"></div>
+                  <h3 className="font-medium text-sm line-clamp-2 mb-1">
+                    {book.title}
+                  </h3>
+                  <p className="text-xs text-gray-600">{book.author}</p>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center mt-4">
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-gray-600 border-gray-300"
               >
-                <div className="relative aspect-square mb-2 bg-gray-100"></div>
-                <h3 className="font-medium text-sm line-clamp-2 mb-1">
-                  {book.title}
-                </h3>
-                <p className="text-xs text-gray-600">{book.author}</p>
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center mt-4">
-            <Button
-              variant="outline"
-              size="sm"
-              className="text-gray-600 border-gray-300"
-            >
-              もっと見る
-            </Button>
-          </div>
-        </section>
+                もっと見る
+              </Button>
+            </div>
+          </section>
+        </div>
       </div>
     </>
   );
