@@ -35,14 +35,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-blue-100 flex flex-col items-center justify-center py-4 ">
       <div className="w-full max-w-md space-y-4">
         <Card>
-          <div className="flex items-center justify-center text-xl font-semibold mt-4">
-            <span className="text-primary text-black">devhub</span>
-          </div>
           <CardHeader>
-            <CardTitle className="text-xl text-center">ログイン</CardTitle>
+            <CardTitle className="text-xl text-center">
+              devhubログイン
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Button
