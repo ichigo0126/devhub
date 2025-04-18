@@ -56,7 +56,7 @@ export default function Page() {
   return (
     <main className="flex flex-col items-center gap-20 p-20 text-base font-medium leading-6 whitespace-nowrap bg-blue-100 rounded text-black min-h-screen">
       <h1 className="font-serif font-normal text-9xl text-white pt-8 select-none">
-        PAPER
+        DEVHUB
       </h1>
       <div className="font-bold text-3xl">
         <TypingAnimation messages={messages} speed={100} />
