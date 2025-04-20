@@ -1,10 +1,10 @@
 import React from 'react'
-import ProfileCard_in_mypage from "@/components/profileCard_in_mypage"
+import ReviewInMypage from "@/components/profileCardInMypage"
 
 const page = async () => {
   await new Promise(resolve => setTimeout(resolve, 2000))
   return (
-    <ProfileCard_in_mypage />
+    <ReviewInMypage />
   )
 }
 

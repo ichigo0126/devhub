@@ -47,7 +47,7 @@ const reviews = [
   },
 ];
 
-const Review_in_mypage = async () => {
+const ReviewInMypage = async () => {
   await new Promise((resolve) => setTimeout(resolve, 3000));
   return (
     <div className="pl-10 mr-10">
@@ -82,4 +82,4 @@ const Review_in_mypage = async () => {
   );
 };
 
-export default Review_in_mypage;
+export default ReviewInMypage;
