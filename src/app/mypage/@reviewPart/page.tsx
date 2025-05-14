@@ -1,5 +1,5 @@
 import React from 'react'
-import ReviewInMypage from "@/components/profileCardInMypage"
+import ReviewInMypage from "@/components/reviewInMypage"
 
 const page = async () => {
   await new Promise(resolve => setTimeout(resolve, 2000))
