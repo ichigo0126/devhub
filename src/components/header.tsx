@@ -15,6 +15,16 @@ import { supabase } from "@/lib/supabase";
 import { Input } from "./ui/input";
 import { ReviewForm } from "./ReviewForm";
 
+// 本の情報の型定義
+interface Book {
+  id: string;
+  title: string;
+  authors?: string[];
+  imageUrl: string;
+  publishedDate?: string;
+  publisher?: string;
+}
+
 export function Header() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -51,10 +61,47 @@ export function Header() {
     }
   };
 
-  const handleAddReview = (data: { title: string; review: string }) => {
+  const handleAddReview = (data: {
+    title: string;
+    review: string;
+    bookId?: string;
+    bookImageUrl?: string;
+    bookData?: Book;
+  }) => {
     // 例: Supabaseにデータを保存するなど
     console.log("レビューが投稿されました:", data);
-    // 成功した場合はユーザーに通知するか、マイページなどに遷移させることも可能
+
+    // 選択した本の情報がある場合
+    if (data.bookData) {
+      console.log("選択された本の情報:", {
+        id: data.bookData.id,
+        title: data.bookData.title,
+        authors: data.bookData.authors,
+        imageUrl: data.bookData.imageUrl,
+        publishedDate: data.bookData.publishedDate,
+        publisher: data.bookData.publisher,
+      });
+
+      // ここでSupabaseなどに本の情報とレビューを保存する処理を追加
+      // 例:
+      // saveReviewToDatabase({
+      //   userId: currentUser.id,
+      //   bookId: data.bookData.id,
+      //   bookTitle: data.bookData.title,
+      //   bookAuthors: data.bookData.authors,
+      //   bookImageUrl: data.bookData.imageUrl,
+      //   reviewContent: data.review
+      // });
+    } else {
+      // 本が選択されていない場合（ユーザーが直接タイトルを入力した場合）
+      console.log("入力されたタイトル:", data.title);
+      console.log("レビュー内容:", data.review);
+    }
+
+    // 成功時の処理
+    alert("レビューが投稿されました！");
+    // 必要に応じてマイページなどに遷移
+    // router.push('/mypage');
   };
 
   console.log(userIcon);
