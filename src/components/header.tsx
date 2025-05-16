@@ -13,6 +13,7 @@ import {
 import { Heart, Settings, LogOut } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { Input } from "./ui/input";
+import { ReviewForm } from "./ReviewForm";
 
 export function Header() {
   const router = useRouter();
@@ -50,6 +51,13 @@ export function Header() {
     }
   };
 
+  const handleAddReview = (data: { title: string; review: string }) => {
+    // ここでレビュー投稿のロジックを実装
+    // 例: Supabaseにデータを保存するなど
+    console.log("レビューが投稿されました:", data);
+    // 成功した場合はユーザーに通知するか、マイページなどに遷移させることも可能
+  };
+
   console.log(userIcon);
 
   return (
@@ -61,9 +69,11 @@ export function Header() {
         <Input placeholder="本を検索" className="mx-10"></Input>
 
         <div className="ml-auto flex items-center gap-4">
-          <Button variant="ghost" size="sm">
-            レビューを新規作成
-          </Button>
+          <ReviewForm
+            onSubmit={handleAddReview}
+            buttonText="レビュー作成"
+            buttonClassName="text-sm font-medium bg-transparent hover:bg-gray-100 px-3 py-1.5 rounded whitespace-nowrap"
+          />
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
