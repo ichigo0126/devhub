@@ -52,7 +52,6 @@ export function Header() {
   };
 
   const handleAddReview = (data: { title: string; review: string }) => {
-    // ここでレビュー投稿のロジックを実装
     // 例: Supabaseにデータを保存するなど
     console.log("レビューが投稿されました:", data);
     // 成功した場合はユーザーに通知するか、マイページなどに遷移させることも可能
@@ -66,7 +65,9 @@ export function Header() {
         <Link href="/home" className="flex items-center gap-2">
           <span className="text-xl font-semibold">devhub</span>
         </Link>
-        <Input placeholder="本を検索" className="mx-10"></Input>
+        <div className="flex justify-center w-full">
+          <Input placeholder="本を検索" className="mx-10 w-3/4"></Input>
+        </div>
 
         <div className="ml-auto flex items-center gap-4">
           <ReviewForm
