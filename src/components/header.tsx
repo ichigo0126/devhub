@@ -295,7 +295,7 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-40">
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/mypage?tab=likes")}>
                 <Heart className="mr-2 h-4 w-4" />
                 いいね
               </DropdownMenuItem>
