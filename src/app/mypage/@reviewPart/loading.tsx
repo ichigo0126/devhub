@@ -9,18 +9,7 @@ export default function Loading() {
     <div className="pl-10 overflow-hidden mr-10">
       <div className="flex justify-between items-center mt-10 mb-6">
         <div>
-          <h1 className="text-2xl font-bold">レビュー</h1>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button variant="outline" size="icon">
-            {/* <Icons.logout className="h-4 w-4" /> */}
-          </Button>
-          <Button variant="outline" size="icon">
-            {/* <Icons.user className="h-4 w-4" /> */}
-          </Button>
-          <Button variant="outline" size="icon">
-            {/* <Icons.user className="h-4 w-4" /> */}
-          </Button>
+          <h1 className="text-2xl font-bold"></h1>
         </div>
       </div>
         <Card className="mb-4 w-full animate-pulse">
